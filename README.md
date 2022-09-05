@@ -479,3 +479,29 @@ Ajay loves to Gym
 */
 
 ```
+
+### working with Generators
+
+```js
+function* director() {
+    yield "three"
+    yield "Two"
+    yield "One"
+    yield "Action"
+}
+
+let countdown = director()
+
+console.log(countdown.next());
+console.log(countdown.next());
+console.log(countdown.next().value);
+console.log(countdown.next());
+console.log(countdown.next());
+/*
+{ value: 'three', done: false }
+{ value: 'Two', done: false }
+One
+{ value: 'Action', done: false }
+{ value: undefined, done: true }
+*/
+```

@@ -287,30 +287,46 @@
 
 // console.log(fruitsList(["apple", "banana", "mango"]))
 
-// old method of using this
-let person = {
-    first: "Ajay",
-    hobbies: ["Chess", "trekking", "Run", "Gym"],
-    printHobbies: function () {
-        const _this = this
-        this.hobbies.forEach(function (hobby) {
-            let string = `${_this.first} loves to ${hobby}`
-            console.log(string);
-        })
-    }
+// // old method of using this
+// let person = {
+//     first: "Ajay",
+//     hobbies: ["Chess", "trekking", "Run", "Gym"],
+//     printHobbies: function () {
+//         const _this = this
+//         this.hobbies.forEach(function (hobby) {
+//             let string = `${_this.first} loves to ${hobby}`
+//             console.log(string);
+//         })
+//     }
+// }
+
+// person.printHobbies()
+
+// // new method by using arrow functions
+// person = {
+//     first: "Ajay",
+//     hobbies: ["Chess", "trekking", "Run", "Gym"],
+//     printHobbies: function () {
+//         this.hobbies.forEach((hobby) => {
+//             let string = `${this.first} loves to ${hobby}`
+//             console.log(string);
+//         })
+//     }
+// }
+// person.printHobbies()
+
+// working with Generators
+function* director() {
+    yield "three"
+    yield "Two"
+    yield "One"
+    yield "Action"
 }
 
-person.printHobbies()
+let countdown = director()
 
-// new method by using arrow functions
-person = {
-    first: "Ajay",
-    hobbies: ["Chess", "trekking", "Run", "Gym"],
-    printHobbies: function () {
-        this.hobbies.forEach((hobby) => {
-            let string = `${this.first} loves to ${hobby}`
-            console.log(string);
-        })
-    }
-}
-person.printHobbies()
+console.log(countdown.next());
+console.log(countdown.next());
+console.log(countdown.next().value);
+console.log(countdown.next());
+console.log(countdown.next());
