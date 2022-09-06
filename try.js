@@ -38,7 +38,6 @@
 //     console.log(item, detailsObj[item]);
 // } // logs out items in ascending order
 
-
 // let [first, , , , fifth] = ["Spokane", "Boston", "Los Angeles", "Seattle", "Portland"]
 // let [firstCity, ...otherCities] = ["Spokane", "Boston", "Los Angeles", "Seattle", "Portland"]
 
@@ -164,7 +163,7 @@
 //     ['CSS', '/topic/css']
 // */
 
-// // // Classes in Js 
+// // // Classes in Js
 
 // class Vehicle {
 //     constructor(description, wheels) {
@@ -316,17 +315,95 @@
 // person.printHobbies()
 
 // working with Generators
-function* director() {
-    yield "three"
-    yield "Two"
-    yield "One"
-    yield "Action"
-}
+// function* director() {
+//     yield "three"
+//     yield "Two"
+//     yield "One"
+//     yield "Action"
+// }
 
-let countdown = director()
+// let countdown = director()
 
-console.log(countdown.next());
-console.log(countdown.next());
-console.log(countdown.next().value);
-console.log(countdown.next());
-console.log(countdown.next());
+// console.log(countdown.next());
+// console.log(countdown.next());
+// console.log(countdown.next().value);
+// console.log(countdown.next());
+// console.log(countdown.next());
+
+// Building Promises
+// const delay = (seconds) =>
+//     new Promise((resolve, reject) =>
+//         typeof seconds === "number"
+//             ? setTimeout(resolve, seconds * 1000)
+//             : reject(new Error("seconds must be number"))
+//     );
+
+// delay(1).then(() => console.log("one second"));
+
+// delay("two seconds")
+//     .then(() => console.log(`two seconds`))
+//     .catch((err) => console.log(`error ocurred`, err));
+
+// // Loading remote data with promises
+
+// const spacePeople = () => {
+//     return new Promise((resolves, rejects) => {
+//         const api = "http://api.open-notify.org/astros.json";
+//         const request = new XMLHttpRequest()
+//         request.open("GET", api);
+//         request.onload = () => {
+//             request.status === 200 ? resolves(JSON.parse(request.response)) : rejects(Error(request.statusText))
+//         }
+//         request.onerror = (err) => {
+//             rejects(err)
+//         }
+//         request.send()
+//     })
+// }
+
+// spacePeople().then((spaceData) => {
+//     console.log(spaceData);
+// }).catch(err => {
+//     console.log(err);
+
+// })
+
+// // returning promises with fetch
+
+// let getSpacePeople = () =>
+//   fetch("http://api.open-notify.org/astros.json").then((res) => res.json());
+
+// let getSpaceNames = () =>
+//   getSpacePeople()
+//     .then((json) => json.people)
+//     .then((people) => people.map((p) => p.name))
+//     .then((namesArr) => namesArr.join(", "))
+//     .then(console.log);
+
+// getSpaceNames();
+// // logs out- Oleg Artemyev, Denis Matveev, Sergey Korsakov, Kjell Lindgren, Bob Hines, Samantha Cristoforetti, Jessica Watkins, Cai Xuzhe, Chen Dong, Liu Yang
+// // node-fetch & isomorphic-fetch are node packages of fetch
+
+// // Using async / await syntax
+// const delay = (seconds) =>
+//   new Promise((resolves) => setTimeout(resolves, seconds * 1000));
+// const countToFour = async () => {
+//   console.log("zero seconds");
+//   await delay(1);
+//   console.log(`1 seconds`);
+//   await delay(2);
+//   console.log(`3 seconds`);
+//   await delay(1);
+//   console.log(`4 seconds`);
+// };
+
+// countToFour();
+
+// incorporating Fetch with Async / Await
+const githubRequest = async (userName) => {
+  const response = await fetch(`https://api.github.com/users/${userName}`);
+  const json = await response.json();
+  console.log(`${json.name} works at ${json.company}`);
+};
+githubRequest("templar-command0");
+// logs out "command0 works at null" , cuz I haven't updated it on github
